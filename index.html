@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast Notification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/4a9dcc5714.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="buttons">
+    <button class="successBtn">Success</button>
+    <button class="errorBtn">Error</button>
+    <button class="invalidBtn">Invalid</button>
+  </div>
+
+  <div id="toastBox">
+
+  </div>
+
+  <script>
+
+    let toastBox = document.getElementById('toastBox');
+    let message = '';
+    let successBtn = document.querySelector('.successBtn');
+    let errorBtn = document.querySelector('.errorBtn');
+    let invalidBtn = document.querySelector('.invalidBtn');
+
+    successBtn.addEventListener('click', function(){
+      message = '<i class="fa-solid fa-circle-check"></i> Successfully submitted';
+      showToast(message);
+    })
+
+    errorBtn.addEventListener('click', function(){
+      message = '<i class="fa-solid fa-circle-xmark"></i> Please fix the error!';
+      showToast(message);
+    })
+
+    invalidBtn.addEventListener('click', function(){
+      message = '<i class="fa-solid fa-circle-exclamation"></i> Invalid input, check again';
+      showToast(message);
+    })
+
+    function showToast(message) {
+      let toast = document.createElement('div');
+      toast.classList.add('toast');
+      toast.innerHTML = message;
+      toastBox.appendChild(toast);
+
+      if (message.includes('error')) {
+        toast.classList.add('error');
+      }
+
+      if (message.includes('Invalid')) {
+        toast.classList.add('invalid');
+      }
+
+      setTimeout(() => {
+        toast.remove();
+      }, 6000);
+
+    }
+
+
+  </script>
+</body>
+</html>
